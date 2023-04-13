@@ -1304,7 +1304,7 @@ Attack Scarabs
 
 Destroyer
 -без изменений (улучшение Essence of the C’tan Gods дает бонусное хп технике: Destroyer +500; Heavy Destroyer +300;  Lord Destroyer +250)
-
+ффывфывфывфыв
 Heavy Destroyer
 -базовый хп увеличен 3000 > 3200
 -прописать урон в ближнем бою против всех типов Infantry такой же как у Destroyer
