@@ -4,4 +4,7 @@ Eldars
 DarkEldars
 	-Вырезать расу из игры (не удалять)
  SPACE MARINE AATTTTAAAAAAAACK
+ 
+IG
+	-Добавить бейнблейд в главку н т1
 	
