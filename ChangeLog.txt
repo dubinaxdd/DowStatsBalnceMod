@@ -2,5 +2,6 @@ Eldars
 	-Перенесть FOW на т2
 
 DarkEldars
-	-Вырезать расу из игры
+	-Вырезать расу из игры (не удалять)
+ SPACE MARINE AATTTTAAAAAAAACK
 	
