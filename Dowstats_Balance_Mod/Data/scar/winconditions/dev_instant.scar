@@ -1,0 +1,58 @@
+-- CrazyInsane.scar
+--
+-- original functions by Relic Entertainment Inc.
+-- (c) 2003 Relic Entertainment Inc.
+-- 
+-- Created by Krronus
+-- Improved by Cylarne @ 2014
+-----------------------------------------------------------------------------------------
+import("ScarUtil.scar")
+import("WXPScarUtil.scar")
+import("WCUtil.scar")
+
+function CrazyInsane_Init()
+	Rule_AddOneShot( CrazyInsane, 0.5)
+	--Sound_PlayStinger("music_apocalypse_main")
+end
+
+function CrazyInsane()
+
+	local Modifier = 0.0
+	
+	local playerCount = World_GetPlayerCount()
+
+	for i = 0, playerCount - 1 do
+		local player = World_GetPlayerAt(i)
+		local race = Player_GetRaceName(player)
+		
+		import("UA_SCARCore/K_04/ApocalypseEntityList.scar");
+		
+		-- Set everything to be created quickly, and produce everything, quickly.
+		for i=1,table.getn( t_entity_list ) do
+			local modifier = Modifier_Create(MAT_EntityType, "production_speed_modifier", MUT_Multiplication, false, 100, t_entity_list[i])
+			Modifier_ApplyToPlayer( modifier, player)
+			local modifier_time = Modifier_Create(MAT_EntityType, "cost_time_modifier", MUT_Multiplication, false, 0, t_entity_list[i])
+			Modifier_ApplyToPlayer( modifier_time, player)
+			if (not player_IsHuman_W3(player)) then
+				local modifier_time = Modifier_Create(MAT_EntityType, "cost_requisition_modifier", MUT_Multiplication, false, 0.1, t_entity_list[i])
+				Modifier_ApplyToPlayer( modifier_time, player)
+				local modifier_time = Modifier_Create(MAT_EntityType, "cost_power_modifier", MUT_Multiplication, false, 0.1, t_entity_list[i])
+				Modifier_ApplyToPlayer( modifier_time, player)
+			end
+		end
+	end
+end
+
+-- Function thanks to Gambit!
+function player_IsHuman_W3( player )
+	local name = Player_GetDisplayName(player)[1]
+	if string.len(name) < 3 then return true end
+	name = string.sub(name, -2)
+	if( name == " 1" or name == " 2" or name == " 3" or name == " 4" or name == " 5" or name == " 6" or name == " 7" or name == " 8") then
+		return false
+	else
+		return true
+	end
+end
+
+Scar_AddInit(CrazyInsane_Init)

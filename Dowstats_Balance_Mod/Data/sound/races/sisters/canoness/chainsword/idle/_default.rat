@@ -1,0 +1,15 @@
+-- This file is generated automatically by the Relic Audio Tool
+
+version = 9
+
+priority = 40
+volume = 0.000000
+volumeRand = 0.030000
+pitch = 1.000000
+pitchRand = 0.040000
+maxPolyphony = 6
+containerType = 3
+loopingContainer = 0
+loadAllContainer = 0
+silenceBreak = 0.000000
+silenceRandom = 0.000000
