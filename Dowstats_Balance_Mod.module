@@ -4,7 +4,7 @@ Description = hi
 Playable = 1
 DllName = WXPMod
 ModFolder = Dowstats_Balance_Mod
-ModVersion = 0.22.92
+ModVersion = 0.22.93
 
 DataFolder.1 = Data
 
