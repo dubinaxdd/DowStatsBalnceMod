@@ -1,0 +1,100 @@
+-- This file is generated automatically by the Relic Audio Tool
+
+version = 9
+
+priority = 78
+volume = 0.500000
+volumeRand = 0.020000
+pitchRand = 0.020000
+maxPolyphony = 4
+type3D = 1
+envelope = {
+  {
+    distance = 0.000000,
+    volume = 1.000000,
+    reverb = 0.000000,
+    duration = 0,
+    equalizer = {
+              1.000000,
+              1.000000,
+              1.000000,
+              1.000000,
+              1.000000,
+              1.000000,
+              1.000000,
+              1.000000,
+    }
+  },
+  {
+    distance = 10.000000,
+    volume = 1.000000,
+    reverb = 0.000000,
+    duration = 0,
+    equalizer = {
+              1.000000,
+              1.000000,
+              1.000000,
+              1.000000,
+              1.000000,
+              1.000000,
+              1.000000,
+              1.000000,
+    }
+  },
+  {
+    distance = 40.000000,
+    volume = 0.856667,
+    reverb = 0.000000,
+    duration = 0,
+    equalizer = {
+              1.000000,
+              1.000000,
+              1.000000,
+              1.000000,
+              1.000000,
+              1.000000,
+              1.000000,
+              1.000000,
+    }
+  },
+  {
+    distance = 59.500000,
+    volume = 0.460000,
+    reverb = 0.000000,
+    duration = 0,
+    equalizer = {
+              1.000000,
+              1.000000,
+              1.000000,
+              1.000000,
+              1.000000,
+              1.000000,
+              1.000000,
+              1.000000,
+    }
+  },
+  {
+    distance = 92.500000,
+    volume = 0.000000,
+    reverb = 0.000000,
+    duration = 0,
+    equalizer = {
+              1.000000,
+              1.000000,
+              1.000000,
+              1.000000,
+              1.000000,
+              1.000000,
+              1.000000,
+              1.000000,
+    }
+  },
+}
+cardiodScale = 0.000000
+cardiodLowFreq = 0
+cardiodHighFreq = 0
+containerType = 3
+loopingContainer = 0
+loadAllContainer = 0
+silenceBreak = 0.000000
+silenceRandom = 0.000000
