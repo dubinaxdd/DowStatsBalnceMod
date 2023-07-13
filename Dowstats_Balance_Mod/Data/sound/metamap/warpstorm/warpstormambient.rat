@@ -1,9 +1,0 @@
--- This file is generated automatically by the Relic Audio Tool
-
-version = 9
-
-priority = 99
-volume = 0.00002
-loopStart = 0
-loopEnd = -1
-loopCount = 0
