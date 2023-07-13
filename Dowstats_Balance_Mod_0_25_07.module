@@ -1,0 +1,12 @@
+[global]
+UIName = Dowstats Balance Mod 0.25.07
+Description = hi
+Playable = 1
+DllName = WXPMod
+ModFolder = Dowstats_Balance_Mod_0_25_07
+ModVersion = 0.25.07
+
+DataFolder.1 = Data
+
+RequiredMod.1 = DXP2
+RequiredMod.2 = W40k
