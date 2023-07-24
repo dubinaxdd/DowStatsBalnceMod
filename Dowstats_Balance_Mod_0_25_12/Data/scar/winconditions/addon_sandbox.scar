@@ -1,0 +1,150 @@
+import("ScarUtil.scar")
+-- Created by Evilisador
+-- Tweaked by Age of Death mod team
+
+function OnInit()
+	print("Initializing player-change-button")
+	g_player = {}
+	g_playerlist = {}
+	g_existUI = {}
+	for i = 1, World_GetPlayerCount() do
+		g_player[i] = {}
+		g_player[i].playerID = World_GetPlayerAt( i-1)
+		g_player[i].race = Player_GetRaceName( g_player[i].playerID )
+		g_player[i].team = Player_GetTeam( g_player[i].playerID )
+		g_player[i].name = Player_GetDisplayName( g_player[i].playerID )
+		g_player[i].text = "$35000"
+		Cpu_Enable(g_player[i].playerID, false)
+		FOW_RevealAll()
+	end
+	g_activePlayer = 0
+	g_btn = Button_Add( "btn_ScarUI", true, true, false )
+	Rule_Add( Rule_GetPlayers )
+	Rule_Add( Rule_SwitchCheck )
+end
+Scar_AddInit( OnInit )
+
+-------------------------------------------------
+--[[ TABLE OPERATIONS ]]
+-------------------------------------------------
+
+--fills the table with available players and removes players, who become unavailable
+function Rule_GetPlayers()
+	local player = Tut_GetLocalPlayerIndex() + 1
+	for i = 1, World_GetPlayerCount() do
+		if( i~=player and Cpu_IsCpuPlayer(g_player[i].playerID) ) then
+			addPlayer( i )
+		else
+			removePlayer( i )
+		end
+	end
+	if( g_activePlayer == 0 ) then
+		if( table.getn(g_playerlist) > 0 ) then
+			setBtn( g_playerlist[1] )
+		end
+	end
+end
+function addPlayer( player )
+	if( not isAvailable(player) ) then
+		table.insert( g_playerlist, player )
+	end
+end
+function isAvailable( player )
+	for i = 1, table.getn( g_playerlist ) do
+		if( g_playerlist[i] == player ) then
+			return true
+		end
+	end
+end
+function removePlayer( player )
+	if( isAvailable(player) ) then
+		table.remove( g_playerlist, getPos(player) )
+	end
+end
+
+--gets the index of the player or returns 0 if he/she isn't available
+function getPos( player )
+	for i = 1, table.getn( g_playerlist ) do
+		if( g_playerlist[i] == player ) then
+			return i
+		end
+	end
+	return 0
+end
+
+-------------------------------------------------
+--[[ OTHER FUNCTIONS ]]
+-------------------------------------------------
+
+--checks, whether the players race has a texture for the button
+function hasTexture( player )
+	for i = 1, table.getn( g_existUI ) do
+		if( g_existUI[i] == g_player[player].race ) then
+			return true
+		end
+	end
+	return false
+end
+
+--changes the button to the next available player
+function nextPlayer()
+	local i = getPos( g_activePlayer )
+	if( i == table.getn(g_playerlist) ) then
+		i = 0
+	end
+	setBtn(g_playerlist[i+1])
+end
+
+--sets the button to the requested player
+function setBtn( player )
+	g_activePlayer = player
+		Button_SetTextures( g_btn, "event_cue_icons/custom/player_donation", "event_cue_icons/custom/player_donation", "event_cue_icons/custom/player_donation" )
+	Button_SetTooltip( g_btn, "change player", g_player[player].text )
+	for i = 1, World_GetPlayerCount() do
+		Cpu_Enable(g_player[i].playerID, false)
+	end
+end
+
+--checks, whether players should be switched
+function Rule_SwitchCheck()
+	local player = Tut_GetLocalPlayerIndex() + 1
+	
+	if ( g_btn ~= nil ) then
+		if Button_GetPressed( g_btn ) then
+			switchControl( false, false )
+		end
+	end
+	
+	--if actual player is dead, change to another one and check, wether there are other optional players left
+	if ( not Player_IsAlive( g_player[player].playerID ) ) then
+		if ( (g_btn ~= nil) and (table.getn( g_playerlist ) > 1) ) then
+			switchControl( true, false )
+		else
+			switchControl( true, true )
+		end
+	end
+end
+
+--switches players
+function switchControl( dead, noplayersleft )
+	local player = Tut_GetLocalPlayerIndex() + 1
+	W40k_SwitchToPlayer( g_player[g_activePlayer].playerID, true )
+	Camera_FocusOnTargetPos( Player_GetStartPosition( g_player[g_activePlayer].playerID ), 0 )
+	
+	--if no players are left remove the button, else change the button to the next player
+	if( dead ) then
+		if( noplayersleft ) then
+			Rule_Remove(Rule_SwitchCheck)
+			Button_Remove(g_btn)
+		else
+			nextPlayer()
+			removePlayer( player )
+		end
+		print( "Player "..player.." has died and takes control over player "..g_activePlayer )
+	else
+		addPlayer( player )
+		removePlayer( g_activePlayer )
+		print( "Player "..player.." has switched with player "..g_activePlayer )
+		nextPlayer()
+	end
+end
