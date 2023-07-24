@@ -321,7 +321,7 @@ commandsmall_buttons =
 	-- Cannibalize ability overlaps with 4th ability
 	cannibalize		= list_commands[12],
 	
---	build_adv		= list_commands[6],	
+	build_adv		= list_commands[6],	
 	
 	-- squad/building commands
 	attach_detach			= "Attach",	

@@ -1,5 +1,0 @@
-Чейнджлог для версии: Dowstats Balance Mod 0.25.07
--Исправлена скорость Battle sisters с Missionary
-
-Changelog for version: Dowstats Balance Mod 0.25.07
--Fixed movespeed Battle sisters with Missionary

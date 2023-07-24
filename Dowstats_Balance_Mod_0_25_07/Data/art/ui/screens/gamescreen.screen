@@ -11511,8 +11511,8 @@ Screen =
 																	ID = 349808,
 																	size =  
 																	{
-																		0.38400,
-																		1,
+																		0.0,
+																		0,
 																	},
 																	texture = "generic:art/ui/textures/taskbar/taskbar_share/resource_time.tga",
 																	states =  
@@ -11527,8 +11527,8 @@ Screen =
 														},
 														size =  
 														{
-															0.03000,
-															0.01700,
+															0.00000,
+															0.00000,
 														},
 													},
 													 
